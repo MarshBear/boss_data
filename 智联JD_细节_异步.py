@@ -1,8 +1,9 @@
-import time
 import pandas as pd
-import requests
 import re
 import json
+import asyncio
+import aiohttp
+from concurrent.futures import ThreadPoolExecutor
 
 file = 'shanghai_urls.csv'
 
@@ -10,41 +11,7 @@ cookie = 'adfbid2=0; x-zp-client-id=7c3c1171-ce17-4f87-90e1-108e213b34c2; c=WesR
 
 u_atoken = "a55ede5c-8e41-4546-aebe-0c41b4df9100"
 
-start_num = 27542
-
-headers = {
-    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
-    # "refer": "https://www.zhaopin.com/",
-    "origin": "https://jobs.zhaopin.com",
-    "referer": "https://jobs.zhaopin.com/",
-    "ec-ch-ua": '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": "macOS",
-    "sec-fetch-dest": "document",
-    "sec-fetch-mode": "navigate",
-    "sec-fetch-site": "same-site",
-    "sec-fetch-user": "?1",
-    "upgrade-insecure-requests": "1",
-    "cookie": cookie
-}
-
-data = pd.read_csv('./zhilian_urls/' + file)
-
-params = {
-    "refcode": 4019,
-    "srccode": 401901,
-    "preactionid": "",
-    "u_atoken": u_atoken
-}
-
-obj = re.compile('<script>__INITIAL_STATE__=(?P<js>.*?)</script>', re.S)
-
-
-# url = urls[0]
-# resp = requests.get(url.replace('http://', 'https://'), params=params, headers=headers)
-# resp.encoding = 'UTF-8'
-# with open('智联.html', 'w') as f:
-#     f.write(resp.text)
+start_num = 31430
 
 
 def write_detail(detailed_position, detailed_company, data_series, ind):
@@ -84,25 +51,54 @@ def write_detail(detailed_position, detailed_company, data_series, ind):
     return detailed_result
 
 
-if __name__ == '__main__':
-    result = []
-    for i in range(start_num, len(data)):
-        url = data.loc[i, 'positionURL'].replace('http://', 'https://')
-        try:
-            resp = requests.get(url, params=params, headers=headers)
-            resp.encoding = 'UTF-8'
+headers = {
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+    # "refer": "https://www.zhaopin.com/",
+    "origin": "https://jobs.zhaopin.com",
+    "referer": "https://jobs.zhaopin.com/",
+    "ec-ch-ua": '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "macOS",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-site",
+    "sec-fetch-user": "?1",
+    "upgrade-insecure-requests": "1",
+    "cookie": cookie
+}
+
+data = pd.read_csv('./zhilian_urls/' + file)
+
+params = {
+    "refcode": 4019,
+    "srccode": 401901,
+    "preactionid": "",
+    "u_atoken": u_atoken
+}
+
+obj = re.compile('<script>__INITIAL_STATE__=(?P<js>.*?)</script>', re.S)
+
+
+async def aiodownload(url):
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, params=params, headers=headers) as resp:
             if resp.url == 'https://jobs.zhaopin.com/lost':
-                continue
-            conf = json.loads(obj.findall(resp.text)[0])
-            resp.close()
-            detailed_company = conf['jobInfo']['jobDetail']['detailedCompany']
-            detailed_position = conf['jobInfo']['jobDetail']['detailedPosition']
-            print("%-6d:" % i, detailed_position)
-            detailed_result = write_detail(detailed_position, detailed_company, data.loc[i], i)
-            result.append(detailed_result)
-        except Exception as ex:
-            print(f"ERROR:{i}", ex, sep='\n')
-            print(resp.url)
-            break
-    df = pd.DataFrame(result)
-    df.to_csv('./zhilian_result/shanghai_result/{}.csv'.format(int(time.time())), index=False, encoding='utf8')
+                return
+            conf = json.loads(obj.findall(await resp.text())[0])
+
+
+async def main():
+    pass
+
+
+def coroutine(loop):
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(main())
+    print('finished')
+
+
+if __name__ == '__main__':
+    data = data.loc[start_num:]
+    urls = data['positionURL'].apply(lambda x: x.replace('http://', 'https://')).to_list()
+
+
