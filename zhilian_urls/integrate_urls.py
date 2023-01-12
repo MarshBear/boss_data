@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-city_name = 'shenzhen'
+city_name = 'tianjin'
 
 files = os.listdir(f'./{city_name}_urls/')
 

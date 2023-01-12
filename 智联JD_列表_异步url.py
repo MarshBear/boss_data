@@ -10,14 +10,17 @@ from concurrent.futures import ThreadPoolExecutor
 
 url = 'https://sou.zhaopin.com/'
 
-city = 'tianjin'
-city_code = '531'
+city = 'beijing'
+city_code = '530'
 
-cookie = "x-zp-client-id=6a34bdff-0cdb-4b30-a5d6-eb3c21bf85ad; zp_passport_deepknow_sessionId=b347e779s0be6f4c4daf760bd39fc492c85a; at=cd499344528f4392860eff4c741d2cc2; rt=728b4b1a04594447a147d4a9ed53ef8b; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221143581858%22%2C%22first_id%22%3A%2218268704b221e-09ff941f2efc6b-76492e2f-1821369-18268704b237a1%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTgyNjg3MDRiMjIxZS0wOWZmOTQxZjJlZmM2Yi03NjQ5MmUyZi0xODIxMzY5LTE4MjY4NzA0YjIzN2ExIiwiJGlkZW50aXR5X2xvZ2luX2lkIjoiMTE0MzU4MTg1OCJ9%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%221143581858%22%7D%2C%22%24device_id%22%3A%2218268704b221e-09ff941f2efc6b-76492e2f-1821369-18268704b237a1%22%7D; FSSBBIl1UgzbN7NO=5Y5LggriXH_Kj3qunKwIbhvBGV82gZnAnDimLwW.j4kqofCIK1oSWJF4fcbuT0o_jQlsqRSpa0rK5JJe2.xH4tq; _uab_collina=165960960448468501247055; locationInfo_search={%22code%22:%22653%22%2C%22name%22:%22%E6%9D%AD%E5%B7%9E%22%2C%22message%22:%22%E5%8C%B9%E9%85%8D%E5%88%B0%E5%B8%82%E7%BA%A7%E7%BC%96%E7%A0%81%22}; Hm_lvt_38ba284938d5eddca645bb5e02a02006=1659609605; selectCity_search=531; ssxmod_itna=QqUx0D9Gi=YhDODzxAxewnRDgG9id34YA6Q+QD/jFmDnqD=GFDK40ooO3DCQmGQDOhh1eb=C0oqK6mGgxwkBpRDcQbDCPGnDB9Go8mDYYkDt4DTD34DYDirQGIDieDFF5H/8DbxYQDmxiODlKH6xDa0xi3LaKDR25D0xwFDQKDu6IC8cYGW4D1qYvPFjKD9OoDs6DfKjKmEUfx9oHAwI73poAGDCKDjxB8DmeHW4GdUhH+Vir3iihe/e94LQGPMYpxqG0uFT2DPrRKIWZ4q70ih0=nHODDiPFn4D; ssxmod_itna2=QqUx0D9Gi=YhDODzxAxewnRDgG9id34YA6Q4G9iqEDBw8OD7PY4dO994OGFjUHn8whzc0OEppxD0EyDeBYmexrzdY8rfppaHiY8b4sgrh4te6F4EBjjSFnM57pZ9D9S==BU9+vrYIErsiD5Gy=DCN19GP4pk/B7GED07Kn4DLxG7KYD=; ZL_REPORT_GLOBAL={%22jobs%22:{%22funczoneShare%22:%22dtl_best_for_you%22%2C%22recommandActionidShare%22:%22e50652e0-e83a-49f3-8be7-8386edf1a773-job%22}}; acw_tc=276077e416596927206211408e6ed117c0ce57b26092ee8a4ce8f5e3cf6bca; acw_sc__v2=62ece6b88dd6dc9e37e5dd501ff1d366119fa5f6; Hm_lpvt_38ba284938d5eddca645bb5e02a02006=1659692734; FSSBBIl1UgzbN7NP=53XubBKh7y.0qqqDcMKYKSAgCF7S8v28x86icJ_mmYn2WYH5tbI.FqEzLnhbcxCDMDrE4J8ujKc.eP0OI5dVsCootkDbmVAiezrxYShdh9kw3.llHVsc7Gbvs9SapTKqvrpnGKwPmsKKnMTrrbWZ1GkW6QGEN290hORdufajXdZ2WySvDGiPs.qtl7CoY3oLbLLATr63ssjoEBeBy_o1bAdhXuR2Ob1D64OY_49DdSHwtTYEkm20OU8jnrt8Axji_um_16kdwewm.Z03D_q87KCQO.H_pmoLNdVNXMcQQqLPG"
+cookie = "x-zp-client-id=da21de79-cabe-4bd4-9c51-730e4c24a751; FSSBBIl1UgzbN7NO=5jZdx14Q1KSB76AotI8.YQze.T_d1npjxACfqMOs43TbL1Tonxek4feuAzfRWb8yNW2I515T.0tZHaKI9ZxQg4q; _uab_collina=165867028859986002403088; urlfrom2=121114589; adfcid2=cn.bing.com; adfbid2=0; ssxmod_itna=7qfxRCitDQDtD=DXzG7+nbkDUOV8oqK=THDlrrexA5D8D6DQeGTrXsdrKdYtkIeFD7Idq8jDc+GAQ+jr5TYQpu4GIDeKG2DmeDyDi5GRD0FebD48KGwD0eG+DD4DWl3zQCXOxB4DF0qIQgDi3DbxtDi4D+GT=DmM3DGLPDbddDIqUxe8xVDBoYqLL9GMxZAGiTWqGyWPGuKdjV9kUSYTFZYQ+==OuYA8GYYDPhADm5K8DoQGhp=7q3Q0+eY7wKABhAa24flPDAY+3xD=; ssxmod_itna2=7qfxRCitDQDtD=DXzG7+nbkDUOV8oqK=TD6a/7ix052x03weXEjD6QjeqQudp23k=I6LyhbDKk23DLxijP4D; c=ys1Wr49F-1658802231000-d5bb677a86fc4-1431458143; _fmdata=vb9omRHt7Sqt826J%2Byn82H59CglLHBFTl3C1tRzIakAofRQWSCd8K%2BnCfego%2FpiDDN4ggXH8F1ykHj75vHgMAhAKBPU8hbsxHN62RZVp3u8%3D; _xid=hoKTRdvKnhAUc9cZ0F3eSNGmki38RDmyFtwfl%2FNYDd5zoz9HxVlQRdh94y6vHv%2BcKqPQFhiStO3zRHHqhlTA2w%3D%3D; x-zp-device-id=00079283dd0dc0cf7746c1727c2f3696; login-type=b; locationInfo_search={%22code%22:%22653%22%2C%22name%22:%22%E6%9D%AD%E5%B7%9E%22%2C%22message%22:%22%E5%8C%B9%E9%85%8D%E5%88%B0%E5%B8%82%E7%BA%A7%E7%BC%96%E7%A0%81%22}; sts_deviceid=182a9bf4781469-0f79e7e8457744-1b525635-1764000-182a9bf4782c29; ZP_OLD_FLAG=false; sts_sg=1; sts_sid=182a9bf4bd5d1e-05e8da5dbdee87-1b525635-1764000-182a9bf4bd6eb6; sts_chnlsid=Unknown; zp_src_url=https%3A%2F%2Fpassport.zhaopin.com%2F; sts_evtseq=2; ZL_REPORT_GLOBAL={%22/resume/new%22:{%22actionid%22:%22d1cd6a0c-09a8-41a7-b4b2-769443948658%22%2C%22funczone%22:%22addrsm_ok_rcm%22}}; acw_tc=2760828316607052817621153e95fa050f957219637f004c8f8f36a387818a; zp_passport_deepknow_sessionId=e2ee98f5s33e524adfb9a8c56800b0cb3907; at=2cdc4ce2fd7d465daf9be71cac16f3b1; rt=4990030b91bf4d2595abad1ae014e551; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%221143581858%22%2C%22first_id%22%3A%2218230456ef1a0f-01ecf78074de37d-1c525635-1764000-18230456ef2abe%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E8%87%AA%E7%84%B6%E6%90%9C%E7%B4%A2%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC%22%2C%22%24latest_referrer%22%3A%22https%3A%2F%2Fwww.bing.com%2F%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTgyMzA0NTZlZjFhMGYtMDFlY2Y3ODA3NGRlMzdkLTFjNTI1NjM1LTE3NjQwMDAtMTgyMzA0NTZlZjJhYmUiLCIkaWRlbnRpdHlfbG9naW5faWQiOiIxMTQzNTgxODU4In0%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%221143581858%22%7D%2C%22%24device_id%22%3A%2218230456ef1a0f-01ecf78074de37d-1c525635-1764000-18230456ef2abe%22%7D; selectCity_search=736; FSSBBIl1UgzbN7NP=53BSMADhZK0qqqqDcjQVT3acOJpp1ZNYiLeWFEailA1YDJ7eePoCw3qo3yxDTjv0aO8Q8li3PjUdMhN6M29_n2H7iU4PMAuZ87P0b9DkBSMJOkK3AA2mtgnoTe9vkFKbeEEHAZOIA1_qpl7ICwSwT7N6In2aQeD1Lp0YCX7zisZTcU2zqxFi7sPouw3tKuiyCOxx3sgSagZ_RQAOmrNCZAVyxfGKNiZ02mjsG153xFGNUMzN1Ba13fh1qcKSogpAPybxDAn8lWct7gLqlN_MH0u6MNn8pnHZbo6T6hzs.Pywa"
+
+el = ['5', '4', '3', '10', '1']
+et = ['4', '5']
 
 
 async def aiodownload(param, result):
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(limit=64, verify_ssl=False)) as session:
         async with session.get(url, params=param, headers=headers) as resp:
             try:
                 conf = json.loads(obj.findall(await resp.text())[0])
@@ -53,7 +56,7 @@ def coroutine(name, params, loop):
 
 if __name__ == '__main__':
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36",
         "referer": "https://www.zhaopin.com/",
         "cookie": cookie
     }
@@ -67,7 +70,7 @@ if __name__ == '__main__':
             continue
         for second in first['sublist']:
             for third in second['sublist']:
-                outfile_name = f"{first['name'].replace('/', 'or')}_{second['name'].replace('/', 'or')}_{third['name'].replace('/', 'or')}.csv"
+                outfile_name = f"{first['name'].replace('/', 'or')}_{second['name'].replace('/', 'or')}_{third['name'].replace('/', 'or')}_实习.csv"
                 if outfile_name in files:
                     continue
                 names[outfile_name] = []
@@ -80,4 +83,4 @@ if __name__ == '__main__':
             thread_loop = asyncio.new_event_loop()
             thread.submit(coroutine, name=name, params=params, loop=thread_loop)
 
-    # coroutine('教育or培训or科研_语言培训_德语教师.csv', names['教育or培训or科研_语言培训_德语教师.csv'])
+    # coroutine('销售or商务拓展_商务拓展_渠道经理.csv', names['销售or商务拓展_商务拓展_渠道经理.csv'], asyncio.new_event_loop())
